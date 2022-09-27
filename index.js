@@ -31,19 +31,28 @@ function askNext() {
                             message: 'What is your github username?',
                             name: 'github',
                         }
-                    ])
+                    ]) 
+                    .then(({github}) => {
+                        const engineer = new Engineer(github);
+                        employeesToRender.push(engineer);
+                    })
             } else if (type === "Intern") {
                 inquirer
                     .prompt([
                         {
-                            type: 'list',
-                            message: 'Which type of team member would you like to add?',
-                            choices: ['Engineer', 'Intern', 'do not add anymore'],
-                            name: 'type',
+                            type: 'input',
+                            message: 'What is your school?',
+                            name: 'school',
                         },
                     ])
+                    .then(({school}) => {
+                        const intern = new Intern(school)
+                        employeesToRender.push(intern)
+                    })
             } else {
-                // loop the array of employees and create the html for each
+                if(type === 'do not add anymore'){
+                    writeToFile('index.html', employeesToRender)
+                }
             }
         }) 
 }
@@ -75,8 +84,9 @@ function init() {
         .then(({name, id, email, office}) => {
             const manager = new Manager(name, id, email, office)
             employeesToRender.push(manager)
-            writeToFile('./index.html', name, id, email, office);
-        }).then(askNext)
+            // writeToFile('./index.html', name, id, email, office);
+        })
+        .then(askNext)
 
 }
 init();

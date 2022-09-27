@@ -1,4 +1,5 @@
-const genHtml = function(){
+const genHtml = function(data){
+console.log(data);
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
