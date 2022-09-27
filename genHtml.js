@@ -1,4 +1,4 @@
-const genHtml = function(data){
+const genHtml = function(){
     return `<!DOCTYPE html>
     <html lang="en">
     <head>

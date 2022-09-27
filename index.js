@@ -1,74 +1,83 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const genHtml = require('./generateHTML');
+const genHtml = require('./genHtml');
 const Manager = require('./lib/manager');
 const employeesToRender = []
 
 //function to create HTML file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, genHtml(data), (err) => {
+    fs.writeFile(`dist/${fileName}`, genHtml(data), (err) => {
         err ? console.error(err) : console.log("Success!");
     })
 }
 
-function askNext(){
+function askNext() {
     inquirer
-    .prompt([
-        {
-            type: 'list',
-            message: 'Which type of team member would you like to add?',
-            choices: ['Engineer', 'Intern', 'do not add anymore'],
-            name: 'type',
-        },
-    ])
-    .then(({type}) => {
-        if(type === "Engineer"){
-            // call create engineer funciton with propts for engineers
-            // type: 'list',
-            // message: 'What is your github username?',
-            // choices: ['Engineer', 'Intern', 'do not add anymore'],
-            // name: 'type',
-            // then when they are added call askNext() again
-        } else if(type === "Intern"){
- // call create Intern funciton with propts for Intern
- // then when they are added call askNext() again
-        } else {
-            // loop the array of employees and create the html for each
-        }
-    })
+        .prompt([
+            {
+                type: 'list',
+                message: 'Which type of team member would you like to add?',
+                choices: ['Engineer', 'Intern', 'do not add anymore'],
+                name: 'type',
+            },
+        ])
+        .then(({ type }) => {
+            if (type === "Engineer") {
+                // call create engineer funciton with propts for engineers
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            message: 'What is your github username?',
+                            name: 'github',
+                        }
+                    ])
+            } else if (type === "Intern") {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            message: 'Which type of team member would you like to add?',
+                            choices: ['Engineer', 'Intern', 'do not add anymore'],
+                            name: 'type',
+                        },
+                    ])
+            } else {
+                // loop the array of employees and create the html for each
+            }
+        }) 
 }
 //function to initialize app
-function init(){
+function init() {
     inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: 'What is the team managers name?',
-            name: 'name',
-        },
-        {
-            type: 'input',
-            message: 'What is the team managers id?',
-            name: 'id',
-        },
-        {
-            type: 'input',
-            message: 'What is the team managers email?',
-            name: 'email',
-        },
-        {
-            type: 'input',
-            message: 'What is the team managers office number?',
-            name: 'office',
-        }
-    ])
-    .then(({name, id, email, office}) => {
-        const manager = new Manager(name, id, email, office)
-        employeesToRender.push(manager)
-        // writeToFile('index.html', data);
-        writeToFile();
-    })
-    
+        .prompt([
+            {
+                type: 'input',
+                message: 'What is the team managers name?',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'What is the team managers id?',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'What is the team managers email?',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'What is the team managers office number?',
+                name: 'office',
+            }
+        ])
+        .then(({name, id, email, office}) => {
+            const manager = new Manager(name, id, email, office)
+            employeesToRender.push(manager)
+            writeToFile('./index.html', name, id, email, office);
+        }).then(askNext)
+
 }
 init();
 
