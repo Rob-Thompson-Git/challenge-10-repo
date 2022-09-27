@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.1",
+    "inquirer": "^8.2.4"
+  },
+  "name": "challenge-10-repo",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rob-Thompson-Git/challenge-10-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rob-Thompson-Git/challenge-10-repo/issues"
+  },
+  "homepage": "https://github.com/Rob-Thompson-Git/challenge-10-repo#readme"
+}
