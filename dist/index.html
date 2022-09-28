@@ -1,7 +1,4 @@
-
-const genHtml = function (data) {
-    console.log(data);
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -23,43 +20,40 @@ const genHtml = function (data) {
         <main class="row align-items-center">
              <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${data[0].name}</h5>
-                     <p>${data[0].getRole()}</p>
+                    <h5 class="card-title">Tony</h5>
+                     <p>Manager</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">id: ${data[0].id}</li>
-                    <li class="list-group-item">email: ${data[0].email}</li>
-                    <li class="list-group-item">office number: ${data[0].getOfficeNumber()}</li>
+                    <li class="list-group-item">id: 1</li>
+                    <li class="list-group-item">email: tony@fakemail.com</li>
+                    <li class="list-group-item">office number: 101</li>
                 </ul>
              </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${data[1].name}</h5>
-                    <p>${data[1].getRole()}</p>
+                    <h5 class="card-title">Kim</h5>
+                    <p>Engineer</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">id: ${data[1].id}</li>
-                    <li class="list-group-item">email: ${data[1].email}</li>
-                    <li class="list-group-item">GitHub: ${data[1].getGithub()}</li>
+                    <li class="list-group-item">id: 2</li>
+                    <li class="list-group-item">email: kim@fakemail.com</li>
+                    <li class="list-group-item">GitHub: kim345</li>
                 </ul>
             </div>
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${data[2].name}</h5>
-                    <p>${data[2].getRole()}</p>
+                    <h5 class="card-title">Dave</h5>
+                    <p>Intern</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">id: ${data[2].id}</li>
-                    <li class="list-group-item">email: ${data[2].email}</li>
-                    <li class="list-group-item">school: ${data[2].getSchool()}</li>
+                    <li class="list-group-item">id: 3</li>
+                    <li class="list-group-item">email: dave@fakemail.com</li>
+                    <li class="list-group-item">school: 2University</li>
                 </ul>
             </div>
         </main>
 
     </body>
-    </html>`;
-}
-
-module.exports = genHtml;
+    </html>

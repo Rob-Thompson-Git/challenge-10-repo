@@ -1,0 +1,26 @@
+header {
+    margin-bottom: 300px;
+}
+
+.navbar {
+    background-color: #e7423d !important;
+    height: 100px;
+    
+}
+
+.navbar-brand {
+    color: white !important;
+    margin: auto;
+    font-size: 30px !important;
+}
+
+.card {
+    margin: auto;
+    box-shadow: rgba(136, 165, 200, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    
+}
+
+.card-body {
+    background-color: #3188F0;
+    border-radius: 5px;
+}

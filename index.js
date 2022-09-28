@@ -1,12 +1,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const genHtml = require('./genHtml');
+
 const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+const { NONAME } = require('dns');
+
 const employeesToRender = []
 
 //function to create HTML file
 function writeToFile(fileName, data) {
-    fs.writeFile(`dist/${fileName}`, genHtml(data), (err) => {
+fs.writeFile(`./dist/${fileName}`, genHtml(data), (err) => {
         err ? console.error(err) : console.log("Success!");
     })
 }
@@ -28,26 +33,60 @@ function askNext() {
                     .prompt([
                         {
                             type: 'input',
-                            message: 'What is your github username?',
+                            message: 'What is the name of the engineer?',
+                            name: 'name',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the id of the engineer?',
+                            name: 'id',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the email of the engineer?',
+                            name: 'email',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the github username for the engineer?',
                             name: 'github',
-                        }
+                        },
                     ]) 
-                    .then(({github}) => {
-                        const engineer = new Engineer(github);
+                    .then((response) => {
+                        let {name, id, email, github} = response;
+                        const engineer = new Engineer(name, id, email, github);
                         employeesToRender.push(engineer);
+                        askNext();
                     })
             } else if (type === "Intern") {
                 inquirer
                     .prompt([
                         {
                             type: 'input',
-                            message: 'What is your school?',
+                            message: 'What is the interns name?',
+                            name: 'name',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the interns id?',
+                            name: 'id',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the interns email?',
+                            name: 'email',
+                        },
+                        {
+                            type: 'input',
+                            message: 'What is the interns school?',
                             name: 'school',
                         },
                     ])
-                    .then(({school}) => {
-                        const intern = new Intern(school)
-                        employeesToRender.push(intern)
+                    .then((response) => {
+                        let {name, id, email, school} = response;
+                        const intern = new Intern(name, id, email, school);
+                        employeesToRender.push(intern);
+                        askNext();
                     })
             } else {
                 if(type === 'do not add anymore'){
